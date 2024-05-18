@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Hyper - Responsive Bootstrap 4 Admin Dashboard</title>
+    <title>{{ $title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
 
     <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/app-creative-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style" />
+    @stack('style')
 </head>
 
 <body class="loading"
@@ -32,7 +33,7 @@
                                         <li class="breadcrumb-item active">Basic Tables</li>
                                     </ol>
                                 </div> --}}
-                                <h4 class="page-title">Dashboard</h4>
+                                <h4 class="page-title">{{ $title }}</h4>
                             </div>
                         </div>
                     </div>
@@ -51,8 +52,11 @@
 
     <div class="rightbar-overlay"></div>
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('js/vendor.min.js') }}"></script>
     <script src="{{ asset('js/app.min.js') }}"></script>
+    @stack('script')
 </body>
 
 </html>

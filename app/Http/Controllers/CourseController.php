@@ -28,7 +28,9 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('q');
-        $courses = $this->model::where('name', 'like', '%' . $search . '%')->paginate(2);
+        $courses = $this->model->withCount('students')
+            ->where('name', 'like', '%' . $search . '%')
+            ->paginate(10);
         $courses->appends([
             'q' => $search,
         ]);

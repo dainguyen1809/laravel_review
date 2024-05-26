@@ -1,9 +1,30 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\StudentController;
+use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('courses', CourseController::class);
+
+Route::get('login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('login', [AuthController::class, 'storeLogin'])->name('auth.storeLogin');
+
+Route::group(['middleware' => 'admin'], function () {
+    Route::resource('courses', CourseController::class)->except([
+        'destroy',
+    ]);
+    Route::resource('students', StudentController::class)->except([
+        'destroy',
+    ]);
+    Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+
+    Route::group(['middleware' => CheckAdmin::class], function () {
+        Route::delete('courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+        Route::delete('students/{student}', [CourseController::class, 'destroy'])->name('students.destroy');
+    });
+});
 
 // Route::group(['prefix' => 'courses', 'as' => 'course.'], function () {
 //     Route::get('/', [CourseController::class, 'index'])->name('index');

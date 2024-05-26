@@ -14,7 +14,12 @@ class Course extends Model
         'name',
     ];
 
-    protected function formatDate(): Attribute
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    protected function formatDate() : Attribute
     {
         return Attribute::make(
             get: function () {

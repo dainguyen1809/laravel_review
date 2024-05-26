@@ -9,13 +9,6 @@
                 <label class="form-label">Name</label>
                 <input type="text" class="form-control" name="name" placeholder="Enter name course"
                     value="{{ $course->name }}">
-                <div class="w-100 mt-2">
-                    @if ($errors->has('name'))
-                        <span class="text-danger mt-2">
-                            {{ $errors->first('name') }}
-                        </span>
-                    @endif
-                </div>
             </div>
             <div class="row">
                 <div class="col-12">

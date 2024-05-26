@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Student;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateStudentRequest extends FormRequest
 {
@@ -22,7 +24,12 @@ class UpdateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => [
+                'bail',
+                'string',
+                'max:255',
+                Rule::unique(Student::class)->ignore($this->student),
+            ],
         ];
     }
 }

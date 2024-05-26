@@ -39,9 +39,20 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="container">
+                                        @foreach ($errors->all() as $error)
+                                            <span class="text-danger">{{ $error }}</span>
+                                            <br>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
                             @yield('content')
                         </div>
                     </div>
+
                 </div>
             </div>
 

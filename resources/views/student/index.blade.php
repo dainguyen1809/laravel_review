@@ -47,7 +47,8 @@
                 <tr>
                     <td>{{ $student->id }}</td>
                     <td class="table-user">
-                        {{-- <img src="{{ asset($student->avatar) }}" alt="table-user" class="mr-2 rounded-circle" /> --}}
+                        {{-- <img src="{{ session()->get('avatar') }}" alt="user-image" class="rounded-circle" /> --}}
+                        <img src="{{ asset($student->avatar) }}" alt="table-user" class="mr-2 rounded-circle" />
                         {{ $student->name }}
                     </td>
                     <td>{{ $student->format_gender }}</td>

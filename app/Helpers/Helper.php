@@ -2,6 +2,6 @@
 if (! function_exists('checkAdmin')) {
     function checkAdmin()
     {
-        return session()->get('role') === 1;
+        return session()->get('role') === 0;
     }
 }

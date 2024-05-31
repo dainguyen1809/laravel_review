@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('login', [AuthController::class, 'storeLogin'])->name('auth.storeLogin');
 
+Route::get('register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('register', [AuthController::class, 'storeRegister'])->name('auth.storeRegister');
+
 Route::group(['middleware' => 'admin'], function () {
     Route::resource('courses', CourseController::class)->except([
         'destroy',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserRegisteredEvent;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,6 +38,24 @@ class AuthController extends Controller
             dd($e);
             return redirect()->route('auth.login')->with('error', 'Something went wrong !');
         }
+    }
+
+
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+    public function storeRegister(Request $request)
+    {
+        $user = User::create([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')),
+            'role' => 0,
+        ]);
+        UserRegisteredEvent::dispatch($user); //dispatch day vao job (queue)
+        return redirect()->route('students.index');
     }
 
     public function logout()
